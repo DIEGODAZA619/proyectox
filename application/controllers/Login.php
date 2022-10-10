@@ -58,8 +58,17 @@ class Login extends CI_Controller
 					'logo' => $datosEmpresa[0]->logo,
 					'id_apliacion' => $IDAPLICACION,
 				);
-				$this->session->set_userdata($data);
-				redirect("inicio");
+
+				if(verificarActivacion($id_empresa))
+				{
+					$this->session->set_userdata($data);
+					redirect("inicio");	
+				}
+				else
+				{
+					$mensaje ="Favor concectese con SOPORTE TÉCNICO para activación del producto";
+					$this->index($mensaje);
+				}
 			}
 			else
 			{

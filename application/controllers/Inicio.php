@@ -4,9 +4,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Inicio extends CI_Controller {
 
 	function __construct(){
-		parent::__construct();
-		$this->_is_logued_in();		
+		parent::__construct();				
 		$this->load->helper('configuraciones_helper');
+		$this->_is_logued_in();
 	}
 	function _is_logued_in()
 	{
@@ -14,11 +14,20 @@ class Inicio extends CI_Controller {
 
 		$is_logued_in = $this->session->userdata('is_logued_in');
 		$id_apliacion = $this->session->userdata('id_apliacion');
+		$id_empresa = $this->session->userdata('id_empresa');
 		/*$aplicacion =   $this->config->item('IDAPLICACION');
 		if($is_logued_in != TRUE || $id_apliacion != $aplicacion)*/
 		if($is_logued_in != TRUE)
 		{
 			redirect('Login');
+		}
+		else
+		{
+			if(!verificarActivacion($id_empresa))
+			{				
+				$this->session->sess_destroy();
+				redirect('Login');
+			}
 		}
 	}
 	public function index()
@@ -30,7 +39,7 @@ class Inicio extends CI_Controller {
 		$dato['nombre_usuario']  = $this->session->userdata('nombre_completo');
 		$dato['nombre_empresa']  = $this->session->userdata('nombre_empresa');
 		$dato['logo_empresa']  = $this->session->userdata('logo');
-		
+		$id_empresa = $this->session->userdata('id_empresa');		
 		$this->load->view('inicio/cabecera',$dato);
 		$this->load->view('inicio/menu',$dato);
 		//$this->load->view('inicio/cuerpo'); //cuerpo
