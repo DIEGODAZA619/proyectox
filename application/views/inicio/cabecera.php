@@ -23,7 +23,7 @@
             <div class="text-center navbar-brand-wrapper">
                     <!--img src="<?php echo base_url();?>resources/images/logos/senape.png"/-->
                 <a class="navbar-brand brand-logo">
-                    <img width="80" height="80" src="<?php echo base_url();?>resources/images/logos/logo2.png"/>
+                    <img width="80" height="80" src="<?php echo base_url();?>resources/images/logos/<?= $logo_empresa?>"/>
                 </a>
                 <a class="navbar-brand brand-logo-mini" href="#"><i class="mdi mdi-home"></i></a>
                 </div>
@@ -32,7 +32,7 @@
                         <span class="mdi mdi-menu"></span>
                     </button>
                     <div class=" nav-profile col-6">
-                        <span>SISTEMA DE CONTROL DE ALMACEN - SICAL</span>
+                        <span><?= $nombre_empresa?></span>
                     </div>
                     <div  class="nav-profile col-3">
                         <span class=" float-right" > USUARIO:  <?= $nombre_usuario?></span>

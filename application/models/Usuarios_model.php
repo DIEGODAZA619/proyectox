@@ -54,5 +54,13 @@ class Usuarios_model extends CI_Model
 									        order by id asc");	
         return $query->result();
     }
+    function datosEmpresa($id_empresa)
+    {
+    	$query = $this->db_ventas->query("select *
+									         from ad_empresas
+									        where codigo = ".$id_empresa."
+									        order by 1 asc");	
+        return $query->result();	
+    }
 }
 ?>

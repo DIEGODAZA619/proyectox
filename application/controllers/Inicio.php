@@ -28,6 +28,9 @@ class Inicio extends CI_Controller {
 		$dato['rolescero'] = $this->session->userdata('rolescero');
 		$dato['roles']  = $this->session->userdata('roles');
 		$dato['nombre_usuario']  = $this->session->userdata('nombre_completo');
+		$dato['nombre_empresa']  = $this->session->userdata('nombre_empresa');
+		$dato['logo_empresa']  = $this->session->userdata('logo');
+		
 		$this->load->view('inicio/cabecera',$dato);
 		$this->load->view('inicio/menu',$dato);
 		//$this->load->view('inicio/cuerpo'); //cuerpo

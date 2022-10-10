@@ -42,8 +42,10 @@ class Login extends CI_Controller
 			if( $login[0]->estado == 'AC' )
 			{
 				$id_usuario = $login[0]->id;				
+				$id_empresa = $login[0]->codad_empresa;
 				$rolescero = $this->roles_model->obtener_roles_cero($id_usuario,$IDAPLICACION);
-				$roles     = $this->roles_model->obtener_roles($id_usuario,$IDAPLICACION);								
+				$roles     = $this->roles_model->obtener_roles($id_usuario,$IDAPLICACION);	
+				$datosEmpresa = $this->usuarios_model->datosEmpresa($id_empresa);
 				$data = array(
 					'is_logued_in'  => TRUE,
 					'id_usuario' => $id_usuario,					
@@ -52,6 +54,8 @@ class Login extends CI_Controller
 					'gestion' => gestion_vigente(),
 					'nombre_completo' => $login[0]->nombres." ".$login[0]->primer_apellido." ".$login[0]->segundo_apellido,					
 					'id_empresa' => $login[0]->codad_empresa,
+					'nombre_empresa' => $datosEmpresa[0]->denominacion,
+					'logo' => $datosEmpresa[0]->logo,
 					'id_apliacion' => $IDAPLICACION,
 				);
 				$this->session->set_userdata($data);
