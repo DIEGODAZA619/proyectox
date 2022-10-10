@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>SICAL</title>
+  <title>ALDIDACOM</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="<?php echo base_url();?>resources/node_modules/mdi/css/materialdesignicons.css">
     <link rel="stylesheet" href="<?php echo base_url();?>resources/node_modules/perfect-scrollbar/dist/css/perfect-scrollbar.min.css">
@@ -37,9 +37,7 @@
                     <div  class="nav-profile col-3">
                         <span class=" float-right" > USUARIO:  <?= $nombre_usuario?></span>
                     </div>
-                    <div  class=" float-right nav-profile col-1" style="margin:0; padding:0;">
-                        <img class=" float-right" id="miniatura_foto_perfil">
-                    </div>
+                    
                     <div class=" float-left nav-profile col-1" style="margin:0; padding:0;">
                         <ul class="navbar-nav" >
                         <li class="nav-item dropdown">

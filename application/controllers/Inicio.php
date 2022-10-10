@@ -5,8 +5,9 @@ class Inicio extends CI_Controller {
 
 	function __construct(){
 		parent::__construct();				
-		$this->load->helper('configuraciones_helper');
 		$this->_is_logued_in();
+		$this->load->helper('configuraciones_helper');
+		
 	}
 	function _is_logued_in()
 	{
@@ -14,21 +15,11 @@ class Inicio extends CI_Controller {
 
 		$is_logued_in = $this->session->userdata('is_logued_in');
 		$id_apliacion = $this->session->userdata('id_apliacion');
-		$id_empresa = $this->session->userdata('id_empresa');
-		/*$aplicacion =   $this->config->item('IDAPLICACION');
-		if($is_logued_in != TRUE || $id_apliacion != $aplicacion)*/
 		if($is_logued_in != TRUE)
 		{
+			$this->session->sess_destroy();
 			redirect('Login');
-		}
-		else
-		{
-			if(!verificarActivacion($id_empresa))
-			{				
-				$this->session->sess_destroy();
-				redirect('Login');
-			}
-		}
+		}		
 	}
 	public function index()
 	{
