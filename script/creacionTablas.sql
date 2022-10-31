@@ -307,16 +307,14 @@ create table ve_inventarios_resumen
 );
 
 
-create table ve_solicitudes_reserva
+create table ve_venta_detalles
 (
-  id int(11) NOT NULL AUTO_INCREMENT,
-  id_funcionario int,
-  id_empresa int,
-  id_confirmacion_venta int,
+  id int(11) NOT NULL AUTO_INCREMENT,  
+  id_empresa int,  
   gestion    int,
+  idve_ventas int default 0,
   idve_producto int,
-  cantidad_solicitada int, 
-  cantidad_autorizada int,
+  cantidad_solicitada int,   
   precio_unitario  numeric(8,2),
   precio_total     numeric(8,2),
   tipo_solicitud      varchar(3),
