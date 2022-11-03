@@ -38,7 +38,7 @@ class Reportes_ticket extends CI_Controller {
 	function imprimirTicketVenta()
 	{
 		$id_usuario = $this->session->userdata('id_usuario');
-		$id_venta = 1; //$this->input->post('id_ven');		
+		$id_venta = $this->input->post('id_ven');		
 		$ticket = imprimirVenta($id_venta);
 		echo "1";
 		/*$resul = 1;

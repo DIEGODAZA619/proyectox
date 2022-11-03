@@ -87,11 +87,19 @@ function verificarActivacion($idEmpresa)
 }
 
 
-
 function getFechaHoraActual()
 {
-  $hoy = date("Y-m-d h:m:s"); //fecha de hoy
-  return $hoy;
+  /*$hoy = date("Y-m-d h:m:s"); //fecha de hoy
+  $hoy = strtotime ( '-5 hour' , strtotime ($hoy) ); 
+  //$hoy = strtotime ( '+1 minute' , strtotime ($hoy) ); 
+  $hoy = date ( 'Y-m-d H:i:s' , $hoy); 
+  return $hoy;*/
+  $mifecha= date('Y-m-d H:i:s'); 
+  $NuevaFecha = strtotime ( '-5 hour' , strtotime ($mifecha) ) ; 
+  $NuevaFecha = strtotime ( '-0 minute' , $NuevaFecha ) ; 
+  //$NuevaFecha = strtotime ( '+30 second' , $NuevaFecha ) ; 
+  $NuevaFecha = date ( 'Y-m-d H:i:s' , $NuevaFecha); 
+  return $NuevaFecha;
 }
 function formato_fecha_hora($fecha)
 {
@@ -107,8 +115,11 @@ function formato_fecha_hora($fecha)
 }
 function getFechaActual()
 {
-  
-  $hoy = date("Y-m-d"); //fecha de hoy
+  $mifecha= date('Y-m-d H:i:s'); 
+  $NuevaFecha = strtotime ( '-5 hour' , strtotime ($mifecha) ); 
+  $NuevaFecha = strtotime ( '-0 minute' , $NuevaFecha );
+
+  $hoy = date("Y-m-d", $NuevaFecha); //fecha de hoy
   return $hoy;
 }
 function gestion_vigente()

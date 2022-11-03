@@ -40,17 +40,38 @@ function imprimirVenta($id_venta)
 		foreach($datosVentaDetalle as $fila)
 		{	
 			$producto = $fila->valor1."                                      ";
+			
 			$producto = substr($producto,0,27);
-			$cantidad = $fila->cantidad_solicitada	;
-			$precio_unitario = $fila->precio_unitario;
-			$subtotal = $fila->precio_total;
+			
+			$cantidad = $fila->cantidad_solicitada;
+			
+			$precio_unitario = number_format($fila->precio_unitario,2);			
+			if(strlen($precio_unitario)==3)
+			{
+				$precio_unitario = "  ".$precio_unitario;
+			}
+			if(strlen($precio_unitario)==4)
+			{
+				$precio_unitario = " ".$precio_unitario;
+			}
+
+			
+			$subtotal = number_format($fila->precio_total,2);
+			if(strlen($subtotal)==3)
+			{
+				$subtotal = "  ".$subtotal;
+			}
+			if(strlen($subtotal)==4)
+			{
+				$subtotal = " ".$subtotal;
+			}
 			$sumaTotal = $sumaTotal + $subtotal;
-			$printer->text($producto."   ".$cantidad."   ".number_format($precio_unitario,2)."    ".number_format($subtotal,2)."\n");
+			$printer->text($producto."   ".$cantidad."   ".$precio_unitario."    ".$subtotal."\n");
 		}	
 
 		$printer->text("-----------------------------------------------"."\n");
 		$printer->setJustification(Printer::JUSTIFY_RIGHT);		
-		$printer->text("TOTAL: ".number_format($sumaTotal,2)."\n");
+		$printer->text("TOTAL: ".number_format($sumaTotal,2)."Bs.\n");
 		$printer->setJustification(Printer::JUSTIFY_CENTER);
 		$printer->text("Muchas gracias por su compra\n");
 		$printer->feed(1);
@@ -72,16 +93,37 @@ function imprimirVenta($id_venta)
 		foreach($datosVentaDetalle as $fila)
 		{	
 			$producto = $fila->valor1."                                      ";
+			
 			$producto = substr($producto,0,27);
-			$cantidad = $fila->cantidad_solicitada	;
-			$precio_unitario = $fila->precio_unitario;
-			$subtotal = $fila->precio_total;
+			
+			$cantidad = $fila->cantidad_solicitada;
+			
+			$precio_unitario = number_format($fila->precio_unitario,2);			
+			if(strlen($precio_unitario)==3)
+			{
+				$precio_unitario = "  ".$precio_unitario;
+			}
+			if(strlen($precio_unitario)==4)
+			{
+				$precio_unitario = " ".$precio_unitario;
+			}
+
+			
+			$subtotal = number_format($fila->precio_total,2);
+			if(strlen($subtotal)==3)
+			{
+				$subtotal = "  ".$subtotal;
+			}
+			if(strlen($subtotal)==4)
+			{
+				$subtotal = " ".$subtotal;
+			}
 			$sumaTotal = $sumaTotal + $subtotal;
-			$printer->text($producto."   ".$cantidad."   ".number_format($precio_unitario,2)."    ".number_format($subtotal,2)."\n");
-		}	
+			$printer->text($producto."   ".$cantidad."   ".$precio_unitario."    ".$subtotal."\n");
+		}		
 		$printer->text("-----------------------------------------------"."\n");
 		$printer->setJustification(Printer::JUSTIFY_RIGHT);		
-		$printer->text("TOTAL: ".number_format($sumaTotal,2)."\n");
+		$printer->text("TOTAL: ".number_format($sumaTotal,2)."Bs.\n");
 		$printer->setJustification(Printer::JUSTIFY_CENTER);
 		$printer->text("Muchas gracias por su compra\n");
 		$printer->feed(1);
