@@ -63,6 +63,7 @@ function cargarTablaProductosSeleccionados()
 function nuevaVenta()
 {
     costoVenta();
+    $('#txtCliente').val('');
     cargarTablaProductosInventarios();
     $('#ventaFormularioModal').modal({backdrop: 'static', keyboard: false})
     $('#ventaFormularioModal').modal('show');   
