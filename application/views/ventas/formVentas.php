@@ -167,7 +167,7 @@
                         <div class="row">
                             <input type="hidden" class="form-control" id="accion" name="accion" required="required">
                             <input type="hidden" class="form-control" id="id_registro" name="id_registro" required="required">
-                            <input type="text" class="form-control" id="id_producto" name="id_producto" required="required">
+                            <input type="hidden" class="form-control" id="id_producto" name="id_producto" required="required">
 
                             <div class="col-lg-12">
                                 <strong><div id="nombre_producto">COMIDA</div></strong><br>

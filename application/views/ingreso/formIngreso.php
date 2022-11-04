@@ -93,10 +93,10 @@
                     <div  class=" col-lg-12 alert alert-danger"  id="validacionIngreso" style="display: none;"></div>
 
                     <div class="row">
-                        <input type="text" class="form-control" id="accion" name="accion" required="required">
-                        <input type="text" class="form-control" id="id_ingreso" name="id_ingreso" required="required">
-                        <input type="text" class="form-control" id="id_material" name="id_material" required="required">
-                        <input type="text" class="form-control" id="id_registro" name="id_registro" required="required">
+                        <input type="hidden" class="form-control" id="accion" name="accion" required="required">
+                        <input type="hidden" class="form-control" id="id_ingreso" name="id_ingreso" required="required">
+                        <input type="hidden" class="form-control" id="id_material" name="id_material" required="required">
+                        <input type="hidden" class="form-control" id="id_registro" name="id_registro" required="required">
 
                         <div class="col-lg-3">
                             <strong><div id="nombre_producto"> </div></strong><br>
