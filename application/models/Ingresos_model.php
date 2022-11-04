@@ -128,6 +128,18 @@ class Ingresos_model extends CI_Model
 											 );
         return $query->result();
 	}
+
+	function cantidadInventarioProducto($idve_producto)
+	{
+		$query = $this->db_ventas->query("select case when max(id_inventario_inicial_ingreso) is null
+												  then 0
+												  else max(id_inventario_inicial_ingreso)
+										          end AS correlativo
+											 from ve_inventarios 
+											where tipo_proceso = ('INGP')
+											  and idve_producto = ". $idve_producto);
+        return $query->result();   
+	}
 	
 }
 ?>

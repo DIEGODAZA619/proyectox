@@ -63,6 +63,54 @@ function actualizarInventarioResumen($id_material,$cantidad,$tipoProceso,$precio
 }
 
 
+function actualizarCantidadInventario($id_material)
+{
+  $fila =& get_instance();
+  $fila->load->model('ventas_model');
+  $fila->load->model('ingresos_model');
+  $fechaHora = getFechaHoraActual();
+
+  $resumenSolicitudes          = $fila->ventas_model->getcantidadSolicitadaMaterial($id_material);
+  $cantidad_solicitada_reserva = $resumenSolicitudes[0]->cantidad_solicitada;
+
+
+  $resumen              = $fila->ingresos_model->getInventarioResumenId($id_material);
+  $id_registro          = $resumen[0]->id;
+  $cantidad_entrada     = $resumen[0]->cantidad_entrada;
+  $cantidad_salida      = $resumen[0]->cantidad_salida;
+  $saldo                = $resumen[0]->saldo;
+  $cantidad_solicitada  = $resumen[0]->cantidad_solicitada;
+  $cantidad_disponible  = $resumen[0]->cantidad_disponible;
+
+  $cantidad_solicitada  = $cantidad_solicitada_reserva;
+  $cantidad_disponible  = $saldo - $cantidad_solicitada;
+  
+  $dataUpdate = array(     
+      'cantidad_entrada'    => $cantidad_entrada,
+      'cantidad_salida'     => $cantidad_salida,
+      'saldo'               => $saldo,
+      'cantidad_solicitada' => $cantidad_solicitada,
+      'cantidad_disponible' => $cantidad_disponible
+      );
+  $idUpdateIngreso = $fila->ingresos_model->updateInventarioResumen($id_registro,$dataUpdate);
+
+  return $idUpdateIngreso;  
+}
+
+function idMaximoTabla($tabla)
+{
+  $fila =& get_instance();
+  $fila->load->model('ventas_model');  
+  $datos = $fila->ventas_model->getIdMaximoTabla($tabla);
+  if($datos)
+  {
+    return $datos[0]->id_max + 1;
+  }
+  else
+  {
+    return 1;
+  }  
+}
 
 
 function nombreCliente($id_producto)

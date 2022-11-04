@@ -49,6 +49,7 @@
                     <tr class="bg-dark text-white">
                             <th>OPCIONES</th>
                             <th>NRO</th>
+                            <th>FECHA</th>
                             <th>NUM PEDIDO</th>
                             <th>CLIENTE</th>
                             <th>COSTO TOTAL</th>
@@ -62,9 +63,9 @@
 </div>
 
 
-<div class="modal " id="ventaFormularioModal" tabindex="-1" style="overflow-y: scroll;" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" style="max-width: 1200px;" role="document">        
-        <div class="modal-content">
+<div class="modal " id="ventaFormularioModal" tabindex="-1"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="max-width: 1200px; max-height: 700px; overflow-y: scroll;" role="document">        
+        <div class="modal-content" >
             <div class="modal-header">
                 <h3 class="modal-title" id="exampleModalLabel"><b>Formulario de Ingreso</b></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -98,6 +99,8 @@
                         </td>
                         <td></td>
                         <td style="text-align: center;"><BR><h1 class="modal-title" id="exampleModalLabel"><b id="costoTotal"></b></h1></td>
+                        <td></td>
+                        <td><br><button id="guardarIngreso" type="button" class="btn btn-success" onclick="consolidarVenta()"><span class="glyphicon glyphicon-floppy-disk"></span>GUARDAR VENTA</button> </td>
                     </tr>
                 </table> 
             </div>
@@ -123,7 +126,7 @@
             </div>
             <div class="modal-footer ">
                 <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close" >Cerrar</button>
-                <button id="guardarIngreso" type="button" class="btn btn-success" onclick="consolidarVenta()"><span class="glyphicon glyphicon-floppy-disk"></span>GUARDAR VENTA</button>              
+                             
             </div>
         </div>
         
@@ -180,7 +183,7 @@
                 </div>
                 <div class="modal-footer ">
                     <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close" >Cerrar</button>
-                    <button id="guardarIngreso" type="button" class="btn btn-success" onclick='registrarVenta()'><span class="glyphicon glyphicon-floppy-disk"></span>Agregar</button>
+                    <button id="guardarIngresoCantidad" type="button" class="btn btn-success" onclick='registrarVenta()'><span class="glyphicon glyphicon-floppy-disk"></span>Agregar</button>
                 </div>
             </div>
         

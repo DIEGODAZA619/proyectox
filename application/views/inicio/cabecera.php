@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>ALDIDACOM</title>
+  <title>LULUZ</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="<?php echo base_url();?>resources/node_modules/mdi/css/materialdesignicons.css">
     <link rel="stylesheet" href="<?php echo base_url();?>resources/node_modules/perfect-scrollbar/dist/css/perfect-scrollbar.min.css">

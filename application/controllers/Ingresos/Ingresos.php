@@ -297,6 +297,8 @@ class Ingresos extends CI_Controller {
 		{
 			$estado = 'ELB';
 			$tipoProceso = 'INGP';
+
+
 			$id_funcionario = $this->session->userdata('id_funcionario');		
 			$entidad = $this->session->userdata('id_entidad');
 			$gestion = gestion_vigente();
@@ -304,9 +306,13 @@ class Ingresos extends CI_Controller {
 			$dataUpdate = array(	    		
 					'estado' => 'AC',
 	    	);	
+
 			$tabla = "inventario.inventarios";
 		    foreach ($filas as $fila)
 		    {	
+		    	
+		    	$invetariosProductos = $this->ingresos_model->cantidadInventarioProducto($fila->idve_producto);
+	    		$id_inventario_inicial_ingreso = $invetariosProductos[0]->correlativo + 1;
 		    	$data = array(	    		  				  				
 	  				'codad_empresa' => $id_empresa,
 	  				'gestion' => $gestion,
@@ -321,6 +327,7 @@ class Ingresos extends CI_Controller {
 	  				'precio_venta' => $fila->precio_venta,
 	  				'precio_total' => $fila->precio_total,  				
 	  				'id_usuario' => $id_usuario,
+	  				'id_inventario_inicial_ingreso' => $id_inventario_inicial_ingreso
 		    	);
 		    	if(!$this->ingresos_model->checkIngresoMaterialInventario($id_ingreso,$fila->id,$fila->idve_producto))
 		    	{

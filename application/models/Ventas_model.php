@@ -27,12 +27,12 @@ class Ventas_model extends CI_Model
 	function getDatosVentasEstado($estado)
 	{		
 		$estado = "'".$estado."'";
-		$query = $this->db_ventas->query("select v.*, c.nombres
+		$query = $this->db_ventas->query("select v.*, DATE_FORMAT(v.fecha_registro,'%Y-%m-%d') as fecha_venta, c.nombres
 			                                from ve_ventas v, ve_clientes c
 											where 1 = 1
 											and v.id_cliente_solicitante = c.id											
 											and v.estado = ".$estado."
-										    order by v.correlativo_dia asc");
+										    order by v.fecha_registro, v.correlativo_dia asc");
         return $query->result();
 	}
 	function getDatosVentasId($id_venta)
@@ -59,7 +59,13 @@ class Ventas_model extends CI_Model
 										   where id = ".$id_cliente);
         return $query->result(); 
 	}	
-
+	function getSolicitudId($idPedido)
+	{
+		$query = $this->db_ventas->query("select *
+			                                from ve_venta_detalles
+										   where id = ".$idPedido);
+        return $query->result();
+	}
 	function getMaterialesId($id_material)
 	{
 		$query = $this->db_ventas->query("select *
@@ -137,6 +143,15 @@ class Ventas_model extends CI_Model
 								    		 and i.idve_producto = ".$id_producto);
 		return $query->result();
 	}
+	
+	function getVentasDetallesId($id_venta)
+	{
+		$query = $this->db_ventas->query("select *
+								  			from ve_ventas v
+								  		   where v.id = ".$id_venta
+								    		 );
+		return $query->result();
+	}
 	function getVentasDetalles($id_venta)
 	{
 		$query = $this->db_ventas->query("select *
@@ -146,11 +161,65 @@ class Ventas_model extends CI_Model
 								    		 );
 		return $query->result();
 	}
+
+	function getcantidadSolicitadaMaterial($idve_producto)
+	{
+		$query = $this->db_ventas->query("select case when sum(cantidad_solicitada)>0 then  sum(cantidad_solicitada) else 0 end as cantidad_solicitada
+											 from ve_venta_detalles 
+											where estado not in ('AN','AC')
+											  and idve_producto = ". $idve_producto);
+        return $query->result();  
+
+	}
+
+	function getMaterialInventarioPeps($idve_producto)
+	{
+		$query = $this->db_ventas->query(" select *
+											  from ve_inventarios
+											 where idve_producto = ".$idve_producto." 
+											   and saldo > 0
+											   and tipo_proceso IN ('INGP', 'INGS')  
+											   and estado = 'AC'
+											 order by id_inventario_inicial_ingreso asc");
+        return $query->result(); 
+	}
+
+	function getIdMaterialInventario($idInventario)
+	{
+		$query = $this->db_ventas->query(" select *
+											  from ve_inventarios
+											 where id = ".$idInventario);
+        return $query->result(); 
+	}
+
+
+
+
+	function getIdMaximoTabla($tabla)
+    {
+    	$query = $this->db_ventas->query("select max(id)as id_max
+   											 from ". $tabla);
+        return $query->result();
+    }
 	function guardarVentaDetalle($data)
 	{
 		$this->db_ventas->insert('ve_venta_detalles',$data);
 		return $this->db_ventas->insert_id();
 	}
+
+
+	function registrarIngresosInvetarios($data)
+	{
+		$this->db_ventas->insert('ve_inventarios',$data);
+		return $this->db_ventas->insert_id();	
+	}
+
+	function editarInventarioProducto($id, $data)
+	{
+		$this->db_ventas->where('id',$id);
+        return $this->db_ventas->update('ve_inventarios',$data);
+	}
+
 	function guardarCliente($data)
 	{
 		$this->db_ventas->insert('ve_clientes',$data);

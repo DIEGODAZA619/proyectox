@@ -4,7 +4,7 @@
               <footer class="footer">
                   <div class="container-fluid clearfix">
                       <span class="float-right">
-                          <a href="#">SISTEMAS-SENAPE</a> &copy; 2021
+                          <a href="#">ALDIDACOM</a> &copy; 2022
                       </span>
                   </div>
               </footer>

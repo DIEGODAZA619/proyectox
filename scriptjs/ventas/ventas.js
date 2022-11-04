@@ -83,6 +83,7 @@ function formularioVenta(id_producto)
             {
                 if(datos.resultado == 1)
                 {                    
+                    $('#guardarIngresoCantidad').text('Guardar');
                     descripcionMaterial(id_producto);
                     $('#accion').val('nuevo');
                     $('#txtCantidad').val('');
@@ -212,7 +213,8 @@ function entregarVenta(id_venta)
             data: {id_ven: id_venta},
             success: function(data)
             {
-                swal({title: "REGISTRO VENTA",text: 'RECOJA EL TICKET DE PEDIDO...!!!',icon: "success",button: "OK",});                            
+                swal({title: "REGISTRO VENTA",text: 'SE REGISTRO LA ENTREGA CORRECTAMENTE...!!!',icon: "success",button: "OK",});  
+                cargarTablaVentas();                        
             }
         });
     }
@@ -222,6 +224,74 @@ function entregarVenta(id_venta)
     }
 }
 
+
+
+function editarCantidadVenta(idPedido)
+{    
+    var enlace = base_url + "Ventas/Ventas/editarCantidadVenta";
+    var cliente = $('#txtCliente').val();    
+    $.ajax({
+        type: "POST",
+        url: enlace,
+        data: {pedido:idPedido},
+        success: function(data)
+        {
+            var result = JSON.parse(data);
+            $.each(result, function(i, datos)
+            {
+                if(datos.resultado == 1)
+                {   
+                    $('#guardarIngresoCantidad').text('Editar Cantidad');
+                    descripcionMaterial(datos.producto);
+                    $('#accion').val('editar');
+                    $('#txtCantidad').val(datos.cantidad);
+                    $('#id_producto').val(datos.producto);    
+                    $('#id_registro').val(idPedido); 
+                    $('#formularioVentaModal').modal({backdrop: 'static', keyboard: false})
+                    $('#formularioVentaModal').modal('show');                   
+                }
+                else
+                {
+                    alert(datos.mensaje);
+                }
+            });
+        }
+    });    
+}
+function eliminarVenta(id_venta)
+{
+    if(confirm('¿Esta seguro eliminar el registro?'))
+    {
+        var enlace = base_url + "Ventas/Ventas/eliminarPedido";          
+        $.ajax({
+            type: "POST",
+            url: enlace,
+            data: {pedido:id_venta},
+            success: function(data)
+            {
+                var result = JSON.parse(data);
+                $.each(result, function(i, datos)
+                {
+                    if(datos.resultado == 1)
+                    {   
+                        $('#formularioVentaModal').modal('hide');
+                        costoVenta(); 
+                        cargarTablaProductosSeleccionados();
+                        cargarTablaProductosInventarios();                         
+                    }
+                    else
+                    {
+                        alert(datos.mensaje);
+                    }
+                });
+            }
+        });    
+    }
+    else
+    {
+        return false;
+    }
+}
 
 function imprimirVenta(id_venta)
 {
@@ -235,6 +305,28 @@ function imprimirVenta(id_venta)
             swal({title: "REGISTRO VENTA",text: 'RECOJA EL TICKET DE PEDIDO...!!!',icon: "success",button: "OK",});                            
         }
     });
+}
+
+
+function reimprimirVenta(id_venta)
+{
+    if(confirm('¿Esta seguro reimprimir la orden de pedido?'))
+    {
+        var enlace = base_url + "Reportes/Reportes_ticket/imprimirTicketVenta";
+        $.ajax({
+            type: "POST",
+            url: enlace,
+            data: {id_ven: id_venta},
+            success: function(data)
+            {
+                swal({title: "REGISTRO VENTA",text: 'RECOJA EL TICKET DE PEDIDO...!!!',icon: "success",button: "OK",});                            
+            }
+        });
+    }
+    else
+    {
+        return false;
+    }
 }
 
 
