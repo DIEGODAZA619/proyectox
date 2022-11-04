@@ -7,3 +7,11 @@ TRUNCATE table ve_ingresos_detalle;
 TRUNCATE table ve_inventarios;
 TRUNCATE table ve_ventas;
 TRUNCATE table ve_venta_detalles;
+
+
+
+
+--DAVIDDURAN.ADM
+--6660131
+--LETICIADAZA.ADM
+--6651949
