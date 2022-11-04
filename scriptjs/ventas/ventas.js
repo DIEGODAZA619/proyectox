@@ -177,8 +177,11 @@ function consolidarVenta()
             {
                 if(datos.resultado == 1)
                 {                    
+                    
                     swal({title: "REGISTRO VENTA",text: 'VENTA REGISTRADA CORRECTAMENTE...!!!',icon: "success",button: "OK",}); 
+                    
                     $('#ventaFormularioModal').modal('hide');
+                    imprimirVenta(datos.id_venta);
                     cargarTablaProductosSeleccionados(); 
                     costoVenta();
                     cargarTablaVentas();                  

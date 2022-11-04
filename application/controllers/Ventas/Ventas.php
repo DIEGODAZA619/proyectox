@@ -243,6 +243,7 @@ class Ventas extends CI_Controller {
 		$gestion    	= gestion_vigente();
 		$inventario = $this->ventas_model->getSumaVentaTotal($id_usuario);		
 		$costo_total = $inventario[0]->costo_total;
+		$id_venta = 0;
 		$dataClient = array(
 			'nombres' => $nombreCliente,
 		);
@@ -268,8 +269,9 @@ class Ventas extends CI_Controller {
 	    	$idUpdate = $this->ventas_model->updatesVentaDetalle($fila->id_solicitud, $dataVD);	
 	    }
 	    $resul = 1;
-		$mensaje = "OK";		
+		$mensaje = "OK";				
 		$resultado ='[{						
+						"id_venta":"'.$id_venta.'",
 						"resultado":"'.$resul.'",
 						"mensaje":"'.$mensaje.'"
 					 }]';
