@@ -56,7 +56,7 @@ class Ventas extends CI_Controller {
 					</span>
 					<span class='d-inline-block' tabindex='0' data-toggle='tooltip' title='Imprimir Orden'>
 						<button class='btn btn-warning btn-circle' onclick='imprimirVenta(".$fila->id.")'><i class='mdi mdi-check'></i></button>
-					</span><br>
+					</span>
 					<span class='d-inline-block' tabindex='0' data-toggle='tooltip' title='Entregar Pedido'>
 						<button class='btn btn-secondary btn-circle' onclick='entregarVenta(".$fila->id.")'><i class='mdi mdi-check'></i></button>
 					</span>
