@@ -51,16 +51,16 @@ class Ventas extends CI_Controller {
 	    foreach ($filas as $fila)
 	    {
 		    $boton = "";
-		    $boton ="<span class='d-inline-block' tabindex='0' data-toggle='tooltip' title='Seleccionar'>
+		    $boton ="<span class='d-inline-block' tabindex='0' data-toggle='tooltip' title='Ver detalle Venta'>
 						<button class='btn btn-success btn-circle' onclick='verdetalleVenta(".$fila->id.")'><i class='mdi mdi-check'></i></button>
 					</span>
-					<span class='d-inline-block' tabindex='0' data-toggle='tooltip' title='Imprimir'>
+					<span class='d-inline-block' tabindex='0' data-toggle='tooltip' title='Imprimir Orden'>
 						<button class='btn btn-warning btn-circle' onclick='imprimirVenta(".$fila->id.")'><i class='mdi mdi-check'></i></button>
 					</span><br>
-					<span class='d-inline-block' tabindex='0' data-toggle='tooltip' title='Consolidar'>
+					<span class='d-inline-block' tabindex='0' data-toggle='tooltip' title='Entregar Pedido'>
 						<button class='btn btn-secondary btn-circle' onclick='entregarVenta(".$fila->id.")'><i class='mdi mdi-check'></i></button>
 					</span>
-					<span class='d-inline-block' tabindex='0' data-toggle='tooltip' title='Consolidar'>
+					<span class='d-inline-block' tabindex='0' data-toggle='tooltip' title='Cancelar Pedido'>
 						<button class='btn btn-danger btn-circle' onclick='entregarVenta(".$fila->id.")'><i class='mdi mdi-check'></i></button>
 					</span>";
 		    $data[] = array(
