@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 04-11-2022 a las 21:33:20
+-- Tiempo de generación: 04-11-2022 a las 21:52:16
 -- Versión del servidor: 5.7.31
 -- Versión de PHP: 7.4.9
 
@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `ad_control_acceso` (
   `ip` varchar(100) NOT NULL,
   `fecha_registro` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `ad_control_acceso`
@@ -117,7 +117,10 @@ INSERT INTO `ad_control_acceso` (`id`, `id_usuario`, `aplicacion`, `ip`, `fecha_
 (29, 1, '1', '::1', '2022-11-04 11:00:30'),
 (30, 10, '1', '::1', '2022-11-04 17:28:35'),
 (31, 10, '1', '::1', '2022-11-04 17:30:24'),
-(32, 10, '1', '::1', '2022-11-04 17:32:23');
+(32, 10, '1', '::1', '2022-11-04 17:32:23'),
+(33, 11, '1', '::1', '2022-11-04 17:36:27'),
+(34, 10, '1', '::1', '2022-11-04 17:37:05'),
+(35, 1, '1', '::1', '2022-11-04 17:37:23');
 
 -- --------------------------------------------------------
 
@@ -542,7 +545,7 @@ CREATE TABLE IF NOT EXISTS `ve_inventarios_resumen` (
   `estado` varchar(3) DEFAULT 'AC',
   PRIMARY KEY (`id`),
   UNIQUE KEY `idve_producto` (`idve_producto`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `ve_inventarios_resumen`
@@ -553,7 +556,16 @@ INSERT INTO `ve_inventarios_resumen` (`id`, `id_empresa`, `gestion`, `idve_produ
 (2, 1, 2022, 2, 0, 0, 0, 0, 0, '0.00', '2022-10-29 18:11:32', '2022-10-30 00:11:16', 'AC'),
 (3, 1, 2022, 3, 0, 0, 0, 0, 0, '0.00', '2022-10-29 18:11:32', '2022-10-30 00:11:16', 'AC'),
 (4, 1, 2022, 4, 0, 0, 0, 0, 0, '0.00', '2022-10-29 18:11:46', '2022-10-30 00:11:34', 'AC'),
-(5, 1, 2022, 5, 0, 0, 0, 0, 0, '0.00', '2022-10-29 18:11:46', '2022-10-30 00:11:34', 'AC');
+(5, 1, 2022, 5, 0, 0, 0, 0, 0, '0.00', '2022-10-29 18:11:46', '2022-10-30 00:11:34', 'AC'),
+(6, 1, 2022, 6, 0, 0, 0, 0, 0, '0.00', '2022-11-04 17:49:27', NULL, 'AC'),
+(7, 1, 2022, 7, 0, 0, 0, 0, 0, '0.00', '2022-11-04 17:49:27', NULL, 'AC'),
+(8, 1, 2022, 8, 0, 0, 0, 0, 0, '0.00', '2022-11-04 17:49:27', NULL, 'AC'),
+(9, 1, 2022, 9, 0, 0, 0, 0, 0, '0.00', '2022-11-04 17:49:27', NULL, 'AC'),
+(10, 1, 2022, 10, 0, 0, 0, 0, 0, '0.00', '2022-11-04 17:49:27', NULL, 'AC'),
+(11, 1, 2022, 11, 0, 0, 0, 0, 0, '0.00', '2022-11-04 17:49:27', NULL, 'AC'),
+(12, 1, 2022, 12, 0, 0, 0, 0, 0, '0.00', '2022-11-04 17:49:27', NULL, 'AC'),
+(13, 1, 2022, 13, 0, 0, 0, 0, 0, '0.00', '2022-11-04 17:49:27', NULL, 'AC'),
+(14, 1, 2022, 14, 0, 0, 0, 0, 0, '0.00', '2022-11-04 17:49:27', NULL, 'AC');
 
 -- --------------------------------------------------------
 
@@ -599,20 +611,29 @@ CREATE TABLE IF NOT EXISTS `ve_productos` (
   `imagen` varchar(100) DEFAULT NULL,
   `fecha_registro` datetime DEFAULT CURRENT_TIMESTAMP,
   `fecha_modificacion` datetime DEFAULT NULL,
-  `estado` varchar(20) DEFAULT NULL,
+  `estado` varchar(20) DEFAULT 'AC',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `ve_productos`
 --
 
 INSERT INTO `ve_productos` (`id`, `codad_empresa`, `idve_proveedor`, `idve_linea`, `categoria`, `valor1`, `valor2`, `composicion`, `presentacion`, `unidad`, `imagen`, `fecha_registro`, `fecha_modificacion`, `estado`) VALUES
-(1, 1, 1, 1, 1, 'BROCHETAS DE POLLO', 'BROCHETAS DE POLLO', NULL, NULL, 'PLATO', NULL, '2022-10-29 18:04:42', '2022-10-30 00:03:07', NULL),
-(2, 1, 1, 1, 1, 'LASAGNA DE CARNE', 'LASAGNA DE CARNE', NULL, NULL, 'PLATO', NULL, '2022-10-29 18:04:42', '2022-10-30 00:03:07', NULL),
-(3, 1, 1, 1, 1, 'TUCUMANAS MIXTAS', 'TUCUMANAS MIXTAS', NULL, NULL, 'PIEZA', NULL, '2022-10-29 18:05:21', '2022-10-30 00:04:48', NULL),
-(4, 1, 2, 2, 2, 'FANTA', 'FANTA', NULL, NULL, 'BOTELLA', NULL, '2022-10-29 18:06:50', '2022-10-30 00:05:57', NULL),
-(5, 1, 2, 2, 2, 'COCA COLA 1 LITRO', 'COCA COLA 1 LITRO', NULL, NULL, 'BOTELLA', NULL, '2022-10-29 18:06:50', '2022-10-30 00:05:57', NULL);
+(1, 1, 1, 1, 1, 'BROCHETAS DE POLLO', 'BROCHETAS DE POLLO', NULL, NULL, 'PLATO', NULL, '2022-10-29 18:04:42', '2022-10-30 00:03:07', 'AC'),
+(2, 1, 1, 1, 1, 'LASAGNA DE CARNE', 'LASAGNA DE CARNE', NULL, NULL, 'PLATO', NULL, '2022-10-29 18:04:42', '2022-10-30 00:03:07', 'AC'),
+(3, 1, 1, 1, 1, 'TUCUMANAS MIXTAS', 'TUCUMANAS MIXTAS', NULL, NULL, 'PIEZA', NULL, '2022-10-29 18:05:21', '2022-10-30 00:04:48', 'AC'),
+(4, 1, 2, 2, 2, 'FANTA 2 LITROS', 'FANTA 2 LITROS', NULL, NULL, 'BOTELLA', NULL, '2022-10-29 18:06:50', '2022-10-30 00:05:57', 'AC'),
+(5, 1, 2, 2, 2, 'COCA COLA 1 LITRO', 'COCA COLA 1 LITRO', NULL, NULL, 'BOTELLA', NULL, '2022-10-29 18:06:50', '2022-10-30 00:05:57', 'AC'),
+(6, 1, 2, 2, 2, 'COCA COLA DE 2 LITROS', NULL, NULL, NULL, 'BOTELLA', NULL, '2022-11-04 17:42:24', NULL, 'AC'),
+(7, 1, 2, 2, 2, 'COCA COLA 500 ML', NULL, NULL, NULL, 'BOTELLA', NULL, '2022-11-04 17:42:24', NULL, 'AC'),
+(8, 1, 2, 2, 2, 'FANTA 500 ML', 'FANTA 500 ML', NULL, NULL, 'BOTELLA', NULL, '2022-11-04 17:44:14', NULL, 'AC'),
+(9, 1, 2, 2, 2, 'AGUA VITAL 350 ML', 'AGUA VITAL 350 ML', NULL, NULL, 'BOTELLA', NULL, '2022-11-04 17:44:14', NULL, 'AC'),
+(10, 1, 2, 2, 2, 'AGUA VITAL 990 ML', 'AGUA VITAL 990 ML', NULL, NULL, 'BOTELLA', NULL, '2022-11-04 17:45:18', NULL, 'AC'),
+(11, 1, 2, 2, 2, 'DEL VALLE MANZANA 2 L', 'DEL VALLE MANZANA 2 L', NULL, NULL, 'BOTELLA', NULL, '2022-11-04 17:45:18', NULL, 'AC'),
+(12, 1, 2, 2, 2, 'DEL VALLE MANZANA 300 ML', 'DEL VALLE MANZANA 300 ML', NULL, NULL, 'BOTELLA', NULL, '2022-11-04 17:46:04', NULL, 'AC'),
+(13, 1, 2, 2, 2, 'DEL VALLE DURAZNO 2L', 'DEL VALLE DURAZNO 2L', NULL, NULL, 'BOTELLA', NULL, '2022-11-04 17:46:04', NULL, 'AC'),
+(14, 1, 2, 2, 2, 'DEL VALLE DURAZNO 300 ML', 'DEL VALLE DURAZNO 300 ML', NULL, NULL, 'BOTELLA', NULL, '2022-11-04 17:46:33', NULL, 'AC');
 
 -- --------------------------------------------------------
 

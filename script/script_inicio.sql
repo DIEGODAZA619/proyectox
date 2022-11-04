@@ -15,3 +15,16 @@ TRUNCATE table ve_venta_detalles;
 --6660131
 --LETICIADAZA.ADM
 --6651949
+
+
+
+--ejemplo de como insertar en la tabla ve_inventarios_resumen, solo hay q cambiar el idve_producto
+INSERT INTO ve_inventarios_resumen (id_empresa,gestion,idve_producto)VALUES(1,2022,6);
+INSERT INTO ve_inventarios_resumen (id_empresa,gestion,idve_producto)VALUES(1,2022,7);
+INSERT INTO ve_inventarios_resumen (id_empresa,gestion,idve_producto)VALUES(1,2022,8);
+INSERT INTO ve_inventarios_resumen (id_empresa,gestion,idve_producto)VALUES(1,2022,9);
+INSERT INTO ve_inventarios_resumen (id_empresa,gestion,idve_producto)VALUES(1,2022,10);
+INSERT INTO ve_inventarios_resumen (id_empresa,gestion,idve_producto)VALUES(1,2022,11);
+INSERT INTO ve_inventarios_resumen (id_empresa,gestion,idve_producto)VALUES(1,2022,12);
+INSERT INTO ve_inventarios_resumen (id_empresa,gestion,idve_producto)VALUES(1,2022,13);
+INSERT INTO ve_inventarios_resumen (id_empresa,gestion,idve_producto)VALUES(1,2022,14);

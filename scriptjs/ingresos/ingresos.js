@@ -148,8 +148,8 @@ function cargarTablaMateriales()
 
     $('#idTablaMateriales').DataTable({
         destroy: true,
-        "aLengthMenu": [[10, 15, 20, -1], [10, 15, 20, "Todos"]],
-        "iDisplayLength": 3,
+        "aLengthMenu": [[7, 15, 20, -1], [7, 15, 20, "Todos"]],
+        "iDisplayLength": 7,
          "ajax": {
             type: "GET",
             url: enlace,
