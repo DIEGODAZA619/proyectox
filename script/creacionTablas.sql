@@ -441,6 +441,34 @@ INSERT INTO ad_opciones_usuarios (idad_usuario, codad_opcion) VALUES
 
 
 
+INSERT INTO ad_opciones_usuarios (idad_usuario, codad_opcion) VALUES
+(10, 1),
+(10, 2),
+(10, 3),
+(10, 4),
+(10, 5),
+
+(10, 11),
+(10, 12),
+(10, 13),
+(10, 14);
+
+
+INSERT INTO ad_opciones_usuarios (idad_usuario, codad_opcion) VALUES
+(11, 1),
+(11, 2),
+(11, 3),
+(11, 4),
+(10, 5),
+
+(11, 11),
+(11, 12),
+(11, 13),
+(11, 14);
+
+
+
+
 
 
 

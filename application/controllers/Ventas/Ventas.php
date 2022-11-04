@@ -70,7 +70,7 @@ class Ventas extends CI_Controller {
 	                $fila->correlativo_dia,
 	                $fila->nombres,
 	                $fila->precio_total,
-	                $fila->estado
+	                'PENDIENTE'
 	           );
 	    }
         $output = array(
@@ -392,7 +392,7 @@ class Ventas extends CI_Controller {
 	{
 		$id_venta = $this->input->post('pedido');
 		$id_usuario = $this->session->userdata('id_usuario');
-		$fechaActual = getFechaActual();
+		$fechaActual = getFechaHoraActual();
 		$data = array(	    				
 	    				'fecha_modificacion' => $fechaActual,
 	    				'estado' => 'AN'

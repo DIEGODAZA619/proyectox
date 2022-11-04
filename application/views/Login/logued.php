@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>SICAL</title>
+  <title>LULUZ</title>
     <link rel="stylesheet" href="<?php echo base_url();?>resources/css/style.css">
 </head>
 <style>

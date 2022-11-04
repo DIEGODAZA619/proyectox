@@ -15,9 +15,9 @@
 <div class="card" id="materialSeleccionado" >    
     <div class="card-body">
         <div class="col-12">
-            <h1 class="page-title">VENTAS</h1>        
+            <h1 class="page-title">REGISTRO DE VENTAS</h1>        
         </div> 
-        <div class="row">
+        <!--<div class="row">
             <div class="col-2">
                 <label>FECHA VENTAS</label>
                 <input type="date" class="form-control" id="fechaVentas" name="fechaVentas" required="required">
@@ -35,7 +35,7 @@
                 <button type="button" id="btnrango" class="btn btn-primary " onclick='ventasModal()' ><i class="mdi mdi-pencil"></i> VER REPORTE</button>
                 
             </div>
-        </div>
+        </div>-->
 
         <div class="card-body">                    
             <div class="col-12">

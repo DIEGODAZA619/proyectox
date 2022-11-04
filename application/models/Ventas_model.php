@@ -14,10 +14,21 @@ class Ventas_model extends CI_Model
 	{
 		$fecha  = "'".$fecha."'";
 		$estado = "'".$estado."'";
-		$query = $this->db_ventas->query("select v.*, c.nombres
-			                                from ve_ventas v, ve_clientes c
+		$query = $this->db_ventas->query("select v.*, DATE_FORMAT(v.fecha_registro,'%Y-%m-%d') as fecha_venta, 
+			                                     c.nombres,
+			                                     p.valor1,
+			                                     vd.cantidad_solicitada,
+			                                     vd.precio_unitario, 
+			                                     vd.precio_total as precio_total_detalle,
+			                                     vd.estado as estado_detalle
+			                                from ve_ventas v, 
+			                                     ve_clientes c,
+			                                     ve_venta_detalles vd,
+			                                     ve_productos p
 											where 1 = 1
 											and v.id_cliente_solicitante = c.id
+											and v.id = vd.idve_ventas
+											and p.id = vd.idve_producto
 											and DATE_FORMAT(v.fecha_registro,'%Y-%m-%d') = ".$fecha."
 											and v.estado = ".$estado."
 										    order by v.correlativo_dia asc");
