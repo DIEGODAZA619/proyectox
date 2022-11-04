@@ -24,6 +24,17 @@ class Ventas_model extends CI_Model
         return $query->result(); 
 	}
 
+	function getDatosVentasEstado($estado)
+	{		
+		$estado = "'".$estado."'";
+		$query = $this->db_ventas->query("select v.*, c.nombres
+			                                from ve_ventas v, ve_clientes c
+											where 1 = 1
+											and v.id_cliente_solicitante = c.id											
+											and v.estado = ".$estado."
+										    order by v.correlativo_dia asc");
+        return $query->result();
+	}
 	function getDatosVentasId($id_venta)
 	{
 		$query = $this->db_ventas->query("select v.*, c.nombres
@@ -126,6 +137,15 @@ class Ventas_model extends CI_Model
 								    		 and i.idve_producto = ".$id_producto);
 		return $query->result();
 	}
+	function getVentasDetalles($id_venta)
+	{
+		$query = $this->db_ventas->query("select *
+								  			from ve_venta_detalles i
+								  		   where i.estado = 'PEN'
+								  		     and i.idve_ventas = ".$id_venta
+								    		 );
+		return $query->result();
+	}
 	function guardarVentaDetalle($data)
 	{
 		$this->db_ventas->insert('ve_venta_detalles',$data);
@@ -141,11 +161,19 @@ class Ventas_model extends CI_Model
 		$this->db_ventas->insert('ve_ventas',$data);
 		return $this->db_ventas->insert_id();	
 	}
+	function updatesVenta($id, $data)
+	{
+		$this->db_ventas->where('id',$id);
+        return $this->db_ventas->update('ve_ventas',$data);
+	}
 	function updatesVentaDetalle($id, $data)
 	{
 		$this->db_ventas->where('id',$id);
         return $this->db_ventas->update('ve_venta_detalles',$data);
 	}
+
+
+
 
 }
 ?>

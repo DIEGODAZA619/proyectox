@@ -195,10 +195,27 @@ function consolidarVenta()
     {
         alert('INGRESE EL NOMBRE DEL CLIENTE');
     }
+}
 
-    
-    
-    
+function entregarVenta(id_venta)
+{
+    if(confirm('¿Estas seguro realizar la entrega?'))
+    {
+        var enlace = base_url + "Ventas/Ventas/entregarVenta";
+        $.ajax({
+            type: "POST",
+            url: enlace,
+            data: {id_ven: id_venta},
+            success: function(data)
+            {
+                swal({title: "REGISTRO VENTA",text: 'RECOJA EL TICKET DE PEDIDO...!!!',icon: "success",button: "OK",});                            
+            }
+        });
+    }
+    else
+    {
+        return false;
+    }
 }
 
 

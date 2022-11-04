@@ -44,8 +44,8 @@ class Ventas extends CI_Controller {
 	{
 		$draw = intval($this->input->get("draw"));
 		$estado = "PEN";
-		$fecha = getFechaActual();		
-		$filas = $this->ventas_model->getDatosVentas($fecha,$estado);
+		//$fecha = getFechaActual();		
+		$filas = $this->ventas_model->getDatosVentasEstado($estado);
 		$data = array();
 		$num = 1;
 	    foreach ($filas as $fila)
@@ -268,6 +268,42 @@ class Ventas extends CI_Controller {
 	    	$idUpdate = $this->ventas_model->updatesVentaDetalle($fila->id_solicitud, $dataVD);	
 	    }
 	    $resul = 1;
+		$mensaje = "OK";		
+		$resultado ='[{						
+						"resultado":"'.$resul.'",
+						"mensaje":"'.$mensaje.'"
+					 }]';
+		echo $resultado;
+	}
+	function entregarVenta()
+	{
+		$id_venta =$this->input->post('id_ven');
+		$id_usuario = $this->session->userdata('id_usuario');
+		$fechaActual = getFechaActual();
+		$data = array(	    				
+	    				'fecha_entrega' => $fechaActual,
+	    				'estado' => 'AC'
+		    		 );	
+
+		/*$filas = $this->ventas_model->getVentasDetalles($id_venta);
+		foreach ($filas as $fila)
+	    {	 		    	
+	    	$id_solicitud 		= $fila->id_solicitud;	    	
+	    	$idMaterial 		= $fila->id_material;
+	    	$idFuncionarioSol	= $fila->id_funcionario;	    	
+	    	$idMaterial 		= $fila->id_material;
+	    	$cantidadAutorizada = $fila->cantidad_autorizada;
+
+	    	$registroInvetario  = $this->registroMaterialInventario($id_solicitud,$id_confirmacion_direccion,$idMaterial,$cantidadAutorizada,$idFuncionarioSol);	 
+
+	    	$update 			= $this->solicitudes_model->updatesVentaDetalle($id_solicitud,$data);
+	    }
+	    $update = $this->ventas_model->updatesVenta($id_venta,$data);
+
+*/
+
+
+		$resul = 1;
 		$mensaje = "OK";		
 		$resultado ='[{						
 						"resultado":"'.$resul.'",
