@@ -25,6 +25,7 @@ function imprimirVenta($id_venta)
 		
 
 		$printer->text("LULUZ - COMIDA CON AMOR"."\n");		
+		$printer->text("PEDIDOS AL WHATSAPP 72406432"."\n");
 		$printer->text("NRO. PEDIDO: ".$datosVenta[0]->correlativo_dia . "\n");	
 		//$printer->text("NRO. PEDIDO: ".$datosVenta[0]->correlativo_dia." (COCINA)" . "\n");				
 		$printer->text("FECHA Y HORA: ".$fecha_hora. "\n");
