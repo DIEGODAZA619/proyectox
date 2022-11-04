@@ -64,7 +64,7 @@
 
 
 <div class="modal " id="ventaFormularioModal" tabindex="-1"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" style="max-width: 1200px; max-height: 700px; overflow-y: scroll;" role="document">        
+    <div class="modal-dialog" style="max-width: 1200px; max-height: 800px; overflow-y: scroll;" role="document">        
         <div class="modal-content" >
             <div class="modal-header">
                 <h3 class="modal-title" id="exampleModalLabel"><b>Formulario de Ingreso</b></h3>

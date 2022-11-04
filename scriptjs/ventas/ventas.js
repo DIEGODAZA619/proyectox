@@ -168,33 +168,40 @@ function consolidarVenta()
     var cliente = $('#txtCliente').val();
     if(cliente.length>0)
     {
-        $.ajax({
-        type: "POST",
-        url: enlace,
-        data: {cli:cliente},
-        success: function(data)
+        if(confirm('¿Estas seguro registrar la venta?'))
         {
-            var result = JSON.parse(data);
-            $.each(result, function(i, datos)
+            $.ajax({
+            type: "POST",
+            url: enlace,
+            data: {cli:cliente},
+            success: function(data)
             {
-                if(datos.resultado == 1)
-                {                    
-                    
-                    swal({title: "REGISTRO VENTA",text: 'VENTA REGISTRADA CORRECTAMENTE...!!!',icon: "success",button: "OK",}); 
-                    
-                    $('#ventaFormularioModal').modal('hide');
-                    imprimirVenta(datos.id_venta);
-                    cargarTablaProductosSeleccionados(); 
-                    costoVenta();
-                    cargarTablaVentas();                  
-                }
-                else
+                var result = JSON.parse(data);
+                $.each(result, function(i, datos)
                 {
-                    alert(datos.mensaje);
-                }
+                    if(datos.resultado == 1)
+                    {                    
+                        
+                        swal({title: "REGISTRO VENTA",text: 'VENTA REGISTRADA CORRECTAMENTE...!!!',icon: "success",button: "OK",}); 
+                        
+                        $('#ventaFormularioModal').modal('hide');
+                        imprimirVenta(datos.id_venta);
+                        cargarTablaProductosSeleccionados(); 
+                        costoVenta();
+                        cargarTablaVentas();                  
+                    }
+                    else
+                    {
+                        alert(datos.mensaje);
+                    }
+                });
+            }
             });
         }
-        });
+        else
+        {
+            return false;
+        }
     }
     else
     {
@@ -293,6 +300,38 @@ function eliminarVenta(id_venta)
     }
 }
 
+function cancelarVenta(id_venta)
+{
+    if(confirm('¿Esta seguro anular el registro de venta?'))
+    {
+        var enlace = base_url + "Ventas/Ventas/anularVenta";          
+        $.ajax({
+            type: "POST",
+            url: enlace,
+            data: {pedido:id_venta},
+            success: function(data)
+            {
+                var result = JSON.parse(data);
+                $.each(result, function(i, datos)
+                {
+                    if(datos.resultado == 1)
+                    {   
+                       swal({title: "REGISTRO VENTA",text: 'SE REGISTRO LA ANULADA CORRECTAMENTE...!!!',icon: "success",button: "OK",});  
+                       cargarTablaVentas();                         
+                    }
+                    else
+                    {
+                        alert(datos.mensaje);
+                    }
+                });
+            }
+        });    
+    }
+    else
+    {
+        return false;
+    }
+}
 function imprimirVenta(id_venta)
 {
     var enlace = base_url + "Reportes/Reportes_ticket/imprimirTicketVenta";

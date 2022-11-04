@@ -61,7 +61,7 @@ class Ventas extends CI_Controller {
 						<button class='btn btn-secondary btn-circle' onclick='entregarVenta(".$fila->id.")'><i class='mdi mdi-check'></i></button>
 					</span>
 					<span class='d-inline-block' tabindex='0' data-toggle='tooltip' title='Cancelar Pedido'>
-						<button class='btn btn-danger btn-circle' onclick='entregarVenta(".$fila->id.")'><i class='mdi mdi-check'></i></button>
+						<button class='btn btn-danger btn-circle' onclick='cancelarVenta(".$fila->id.")'><i class='mdi mdi-check'></i></button>
 					</span>";
 		    $data[] = array(
 	                $boton,
@@ -383,6 +383,32 @@ class Ventas extends CI_Controller {
 	    				
 		$resultado ='[{						
 						"id_venta":"'.$id_venta.'",
+						"resultado":"'.$resul.'",
+						"mensaje":"'.$mensaje.'"
+					 }]';
+		echo $resultado;
+	}
+	function anularVenta()
+	{
+		$id_venta = $this->input->post('pedido');
+		$id_usuario = $this->session->userdata('id_usuario');
+		$fechaActual = getFechaActual();
+		$data = array(	    				
+	    				'fecha_modificacion' => $fechaActual,
+	    				'estado' => 'AN'
+		    		 );		 			
+		$filas = $this->ventas_model->getVentasDetalles($id_venta);		
+		foreach ($filas as $fila)
+	    {	 		    	
+	    	$id_venta_detalle = $fila->id;
+	    	$producto	      = $fila->idve_producto;
+	    	$update 	= $this->ventas_model->updatesVentaDetalle($id_venta_detalle,$data);
+	    	$actualización = actualizarCantidadInventario($producto);
+	    }
+	    $update = $this->ventas_model->updatesVenta($id_venta,$data);
+		$resul = 1;
+		$mensaje = "OK";		
+		$resultado ='[{						
 						"resultado":"'.$resul.'",
 						"mensaje":"'.$mensaje.'"
 					 }]';
