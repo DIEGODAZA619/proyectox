@@ -11,6 +11,7 @@ TRUNCATE table ve_venta_detalles;
 
 
 
+--USUARIOS
 --DAVIDDURAN.ADM
 --6660131
 --LETICIADAZA.ADM
