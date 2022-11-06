@@ -33,7 +33,7 @@ class Productos extends CI_Controller {
 		$id_empresa = $this->session->userdata('id_empresa');		
 		$this->load->view('inicio/cabecera',$dato);
 		$this->load->view('inicio/menu',$dato);
-		//$this->load->view('inicio/cuerpo'); //cuerpo
+		$this->load->view('productos/fromProducto'); //cuerpo
 		$this->load->view('inicio/pie');
 	}
 }
