@@ -6,16 +6,17 @@ function baseurl(enlace)
 }
 function cargarfunciones()
 {
-    cargarTablaMateriales();
+    cargarTablaProductos();
 }
 function cargarCombos()
 {
+    cargarProveedores();
     cargarComboCategoria();
     cargarComboUnidad();
 }
 function cargarComboCategoria()
 {
-   var enlace = base_url + "Materiales/materiales/listarCategoria";
+   var enlace = base_url + "Productos/Productos/listarCategoria";
    $.ajax({
        type: "GET",
        url: enlace,
@@ -27,7 +28,7 @@ function cargarComboCategoria()
 function cargarComboSubCategoria()
 {
    var id = $('#cbcategoria').val();
-   var enlace = base_url + "Materiales/materiales/listarSubCategoria";
+   var enlace = base_url + "Productos/Productos/listarSubCategoria";
    $.ajax({
        type: "POST",
        url: enlace,
@@ -40,7 +41,7 @@ function cargarComboSubCategoria()
 function cargarComboMaterial()
 {
    var id = $('#cbsubcategoria').val();
-   var enlace = base_url + "Materiales/materiales/listarMaterial";
+   var enlace = base_url + "Productos/Productos/listarMaterial";
    $.ajax({
        type: "POST",
        url: enlace,
@@ -52,7 +53,7 @@ function cargarComboMaterial()
 }
 function cargarComboUnidad()
 {
-   var enlace = base_url + "Materiales/materiales/listarUnidad";
+   var enlace = base_url + "Productos/Productos/listarUnidad";
    $.ajax({
        type: "GET",
        url: enlace,
@@ -61,10 +62,10 @@ function cargarComboUnidad()
        }
    });
 }
-function cargarTablaMateriales()
+function cargarTablaProductos()
 {
-    var enlace = base_url + "Materiales/materiales/cargartablasMateriales";
-    $('#idTablaMateriales').DataTable({
+    var enlace = base_url + "Productos/Productos/cargartablasProductos";
+    $('#idTablaProductos').DataTable({
         destroy: true,
         "aLengthMenu": [[10, 15, 20, -1], [10, 15, 20, "Todos"]],
         "iDisplayLength": 10,
@@ -74,16 +75,16 @@ function cargarTablaMateriales()
         },
     });
 }
-function adicionarMaterial()
+function adicionarProducto()
 {
-    $('#formMateriales')[0].reset();
-    $('#registroMaterialModal').modal({backdrop: 'static', keyboard: false})
-    $('#registroMaterialModal').modal('show');
+    $('#formProducto')[0].reset();
+    $('#registroProductoModal').modal({backdrop: 'static', keyboard: false})
+    $('#registroProductoModal').modal('show');
 }
 function editarMaterial($id)
 {
     $('#texto').val('Editar');
-    var enlace = base_url + "Materiales/materiales/idRegistroMaterial";
+    var enlace = base_url + "Productos/Productos/idRegistroMaterial";
        $.ajax({
          type: "POST",
          url: enlace,
@@ -98,7 +99,7 @@ function editarMaterial($id)
              $('#cbcategoria option[value="'+datos.categoria+'"]').prop('selected','selected');
 
              var id = $('#cbcategoria').val();
-             var enlace = base_url + "Materiales/materiales/listarSubCategoria";
+             var enlace = base_url + "Productos/Productos/listarSubCategoria";
              $.ajax({
                  type: "POST",
                  url: enlace,
@@ -108,7 +109,7 @@ function editarMaterial($id)
                      $('#cbsubcategoria option[value="'+datos.subcategoria+'"]').prop('selected','selected');
 
                      var id_cat = $('#cbsubcategoria').val();
-                     var enlace = base_url + "Materiales/materiales/listarMaterial";
+                     var enlace = base_url + "Productos/Productos/listarMaterial";
                          $.ajax({
                              type: "POST",
                              url: enlace,
@@ -130,7 +131,7 @@ function guardar()
 {
     if(validar())
     {
-        var enlace = base_url + "Materiales/materiales/guardarMaterial";
+        var enlace = base_url + "Productos/Productos/guardarMaterial";
         var datos = $('#formMateriales').serialize();
         $.ajax({
             type: "POST",
@@ -152,7 +153,7 @@ function guardar()
                 });
             }
         });
-        cargarTablaMateriales();
+        cargarTablaProductos();
     }
 }
 function validar()
