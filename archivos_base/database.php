@@ -5,9 +5,9 @@ $query_builder = TRUE;
 
 $db['db_ventas'] = array(
 	'dsn'	=> '',
-	'hostname' => '127.0.0.1',
+	'hostname' => 'db',
 	'username' => 'root', 	
-	'password' => '',	
+	'password' => '1982',	
 	'database' => 'db_proyectox',
 	//'database' => 'id9969591_basealdidacom',
 	'dbdriver' => 'mysqli',
